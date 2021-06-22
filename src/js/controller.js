@@ -1,6 +1,8 @@
-console.log("This is the controller module")
+
+import 'regenerator-runtime/runtime';
+
+import * as model from "./model.js";
 
 
-import fact from "./view";
+model.getWeather("44418")
 
-console.log(fact)
