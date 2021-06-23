@@ -1,0 +1,8 @@
+body {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 66, 87, 0.62)), to(rgba(0, 66, 87, 0.62))), url("../images/pexels-invisiblepower-246642.jpg");
+  background: linear-gradient(0deg, rgba(0, 66, 87, 0.62), rgba(0, 66, 87, 0.62)), url("../images/pexels-invisiblepower-246642.jpg");
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/*# sourceMappingURL=components.css.map */

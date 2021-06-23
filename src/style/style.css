@@ -1,0 +1,90 @@
+body {
+  padding: 2rem;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+nav .locator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav .locator__icon {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 5px;
+}
+
+nav .locator__text {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: #f6f6f6;
+  letter-spacing: 0.5px;
+}
+
+nav .bookmark {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav .bookmark__icon {
+  width: 3rem;
+  height: 3rem;
+  margin-left: 5px;
+}
+
+nav .bookmark__text {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: #f6f6f6;
+}
+
+.layout {
+  position: fixed;
+  padding: 0.5rem 2.2rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 66, 87, 0.62)), to(rgba(0, 66, 87, 0.62))), url("../images/pexels-invisiblepower-246642.jpg");
+  background: linear-gradient(0deg, rgba(0, 66, 87, 0.62), rgba(0, 66, 87, 0.62)), url("../images/pexels-invisiblepower-246642.jpg");
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+*::after,
+*::before,
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.6px;
+}
+
+html {
+  font-size: 62.5%;
+}
+/*# sourceMappingURL=style.css.map */

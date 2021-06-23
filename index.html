@@ -4,10 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SCRIPT -->
     <script defer src="src/js/controller.js"></script>
+    <!-- STYLE -->
+    <link rel="stylesheet" href="/src/style/style.css">
+
+    <!-- FONT FAMILY -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <h1>Test</h1>
+    <div class="layout">
+
+     
+    <nav>
+        <div class="locator">
+            <svg class="locator__icon">
+                <use xlink:href="/src/images/sprite.svg#icon-Location-Icon"></use>
+            </svg>
+
+            <p class="locator__text">Location Weather</p>
+        </div>
+
+
+        <img src="/src/images/LOGO.png" alt="" class="logo">
+
+        <div class="bookmark">
+            <p class="bookmark__text">my cities</p>
+            <svg class="bookmark__icon">
+                <use xlink:href="/src/images/sprite.svg#icon-Bookmark-stroke"></use>
+            </svg>
+        </div>
+
+    </nav>
+    <main>
+        <div class="search">
+            <div class="main-search">
+                <input type="text">
+            </div>
+            <div class="search-result">
+
+            </div>
+
+        </div>
+        <div class="main">
+            <div class="main__display">
+                
+            </div>
+        </div>
+
+    </main>
+
+    </div>
 </body>
 </html>
