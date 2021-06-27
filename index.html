@@ -17,46 +17,79 @@
 </head>
 <body>
     <div class="layout">
+        <div class="main-layout">
+            <nav>
+                <div class="locator">
+                    <svg class="locator__icon">
+                        <use xlink:href="/src/images/sprite.svg#icon-Location-Icon"></use>
+                    </svg>
 
-     
-    <nav>
-        <div class="locator">
-            <svg class="locator__icon">
-                <use xlink:href="/src/images/sprite.svg#icon-Location-Icon"></use>
-            </svg>
+                    <p class="locator__text">Location Weather</p>
+                </div>
 
-            <p class="locator__text">Location Weather</p>
+
+                <img src="/src/images/LOGO.png" alt="" class="logo">
+
+                <div class="bookmark">
+                    <p class="bookmark__text">my cities</p>
+                    <svg class="bookmark__icon">
+                        <use xlink:href="/src/images/sprite.svg#icon-Bookmark-stroke"></use>
+                    </svg>
+                </div>
+
+            </nav>
+            <main>
+                <div class="search">
+                    <div class="main-search">
+                        <form action="">
+                            <input type="text" placeholder="SEARCH YOUR CITY">
+                            <button type="submit">
+                                <svg class="main-search__icon">
+                                    <use xlink:href="/src/images/sprite.svg#icon-Search-Place"></use>
+                                </svg>
+                            </button>
+                        </form>
+
+                    </div>
+                    <div class="search-result">
+                        <div class="city">
+                            <div class="city__text">
+                                <p class="city__text--1">Toronto, Ontario</p>
+                                <p class="city__text--2">Canada</p>
+                            </div>
+                            <svg class="city__icon">
+                                <use xlink:href="/src/images/sprite.svg#icon-Clear"></use>
+                            </svg>
+                        </div>
+                        <div class="city">
+                            <div class="city__text">
+                                <p class="city__text--1">Toronto, Ontario</p>
+                                <p class="city__text--2">Canada</p>
+                            </div>
+                            <svg class="city__icon">
+                                <use xlink:href="/src/images/sprite.svg#icon-Clear"></use>
+                            </svg>
+                        </div>
+                        <div class="city">
+                            <div class="city__text">
+                                <p class="city__text--1">Toronto, Ontario</p>
+                                <p class="city__text--2">Canada</p>
+                            </div>
+                            <svg class="city__icon">
+                                <use xlink:href="/src/images/sprite.svg#icon-Clear"></use>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main">
+                    <div class="main__display">
+                        <h2>The Main Display</h2>
+                    </div>
+                </div>
+
+            </main>
         </div>
-
-
-        <img src="/src/images/LOGO.png" alt="" class="logo">
-
-        <div class="bookmark">
-            <p class="bookmark__text">my cities</p>
-            <svg class="bookmark__icon">
-                <use xlink:href="/src/images/sprite.svg#icon-Bookmark-stroke"></use>
-            </svg>
-        </div>
-
-    </nav>
-    <main>
-        <div class="search">
-            <div class="main-search">
-                <input type="text">
-            </div>
-            <div class="search-result">
-
-            </div>
-
-        </div>
-        <div class="main">
-            <div class="main__display">
-                
-            </div>
-        </div>
-
-    </main>
-
     </div>
 </body>
 </html>

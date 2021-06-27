@@ -36,6 +36,10 @@ nav .locator__text {
   letter-spacing: 0.5px;
 }
 
+nav .logo {
+  width: 15rem;
+}
+
 nav .bookmark {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -46,8 +50,8 @@ nav .bookmark {
 }
 
 nav .bookmark__icon {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   margin-left: 5px;
 }
 
@@ -57,19 +61,153 @@ nav .bookmark__text {
   color: #f6f6f6;
 }
 
+.search .main-search input {
+  padding: 0.8rem;
+  font-size: 1.3rem;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.24);
+  -webkit-backdrop-filter: blur(0.5px);
+          backdrop-filter: blur(0.5px);
+  z-index: 2;
+  color: #FFFFFF;
+}
+
+.search .main-search input::-webkit-input-placeholder {
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.search .main-search input:-ms-input-placeholder {
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.search .main-search input::-ms-input-placeholder {
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.search .main-search input::placeholder {
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.search .main-search form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search .main-search__icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.search .main-search button {
+  background-color: transparent;
+  border: none;
+  margin-left: -3rem;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.search .search-result {
+  margin: 2rem 0;
+}
+
+.search .search-result .city {
+  background-color: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.2rem 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.search .search-result .city__text {
+  color: #FFFFFF;
+}
+
+.search .search-result .city__text--1 {
+  font-size: 1.3rem;
+}
+
+.search .search-result .city__text--2 {
+  font-size: 1.1rem;
+}
+
+.search .search-result .city__icon {
+  width: 4rem;
+  height: 4rem;
+}
+
 .layout {
   position: fixed;
-  padding: 0.5rem 2.2rem;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 66, 87, 0.62)), to(rgba(0, 66, 87, 0.62))), url("/pexels-invisiblepower-246642.022de546.jpg");
-  background: linear-gradient(0deg, rgba(0, 66, 87, 0.62), rgba(0, 66, 87, 0.62)), url("/pexels-invisiblepower-246642.022de546.jpg");
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 66, 87, 0.62)), to(rgba(0, 66, 87, 0.62))), url("/628772bb7e60b6bebbfff660022de546.jpg");
+  background: linear-gradient(0deg, rgba(0, 66, 87, 0.62), rgba(0, 66, 87, 0.62)), url("/628772bb7e60b6bebbfff660022de546.jpg");
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;
+}
+
+.main-layout {
+  padding: 1.5rem 5rem;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 30%;
+      -ms-flex: 30% 70%;
+          flex: 30% 70%;
+  margin: 6rem 0;
+}
+
+.search {
+  -webkit-box-flex: 20%;
+      -ms-flex: 20%;
+          flex: 20%;
+  margin-right: 2rem;
+}
+
+.main {
+  -webkit-box-flex: 65%;
+      -ms-flex: 65%;
+          flex: 65%;
+  padding-left: 5rem;
+}
+
+.main__display {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 *::after,
