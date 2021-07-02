@@ -65,7 +65,7 @@ nav{
                 letter-spacing: 1px;
                 font-weight: 300;
                 font-family: 'Montserrat', sans-serif;
-                font-weight:300;
+                
 
             }
         }
@@ -94,10 +94,15 @@ nav{
             align-items: center;
             justify-content: space-between;
             padding:0.2rem 0.4rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             
+            &:hover{
+                background-color: rgba(0,0,0,0.5);
+                cursor: pointer;
+            }
             &__text{
-                color:#FFFFFF;
+                color:#F6F6F6;
+    
                 &--1{
                     font-size: 1.3rem;
                 }
@@ -109,6 +114,188 @@ nav{
             &__icon{
                 width:4rem;
                 height:4rem;
+            }
+        }
+    }
+}
+
+.today{
+    display: flex;
+    align-items: center;
+    margin:5rem 0;
+    &__max{
+        display: flex;
+        flex:40%;
+        flex-direction: column;
+        justify-content: center;
+        
+        // align-items: center;
+        &--icon{
+            width:11rem;
+            height:11rem;
+        }
+        &--main{
+            margin-left:2rem;
+            margin-top:0.5rem;
+            .max-temp{
+                font-size: 2rem;
+                color:white;
+                position: relative;
+                display: inline;
+                margin-right:1.7rem;
+
+                &__icon{
+                    position: absolute;
+                    top:-4px;
+                    right:-12px;
+                    width:2rem;
+                    height:2rem;
+                }
+            }
+            .min-temp{
+                font-size: 1.5rem;
+                color:white;
+                position: relative;
+                display: inline;
+
+                &__icon{
+                    position: absolute;
+                    top:-4px;
+                    right:-12px;
+                    width:1.5rem;
+                    height:1.5rem;
+                }
+            }
+        }
+    }
+
+    &__more{
+        flex:60%;
+
+        p{
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.3rem;
+            color: white;
+        }
+
+        .extra{
+            display: flex;
+            margin-left: -1.4rem;
+            
+            &__text{
+                display: flex;
+                align-items: center;
+                margin-right:2rem;
+
+                &--main{
+                    margin-top: 1rem;
+                    font-size: 1.2rem;
+                    letter-spacing: 1px;
+                }
+            }
+            &__icon{
+                width:3rem;
+                margin-right:2px;
+                height:3rem;
+            }
+        }
+    }
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+
+    .place{
+        color:white;
+        
+
+        &__first{
+            font-size: 1.6rem;
+            margin-bottom: 3px;
+            letter-spacing: 2px;
+            font-weight: 200;
+        }
+
+        &__second{
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+        }   
+    }
+
+    &__icon{
+        width:2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.following{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 1.4rem;
+    grid-gap: 1.4rem;
+    .day{
+        background-color: rgba(0,0,0,0.3);
+        padding:1rem;
+        &__date{
+            color:white;
+            font-size: 1.3rem;
+            font-weight: 200;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        &__main{
+            margin:2rem 0;
+            &--icon{
+                width:6rem;
+                height:6rem;
+                display: block;
+                margin:0 auto;
+            }
+
+            &--text{
+                text-align: center;
+                color:white;
+                font-size: 1.3rem;
+                font-weight:200;
+                letter-spacing: 1.4px;
+            }
+        }
+
+        .maxmin{
+            display: flex;
+            justify-content: center;
+            .max-temp{
+                font-size: 1.6rem;
+                color:white;
+                position: relative;
+                display: inline-block;
+                margin-right:2rem;
+
+                &__icon{
+                    position: absolute;
+                    top:-0.7rem;
+                    right:-1.6rem;
+                    width:2rem;
+                    height:2rem;
+                }
+            }
+            .min-temp{
+                font-size: 1.5rem;
+                color:white;
+                position: relative;
+                display: inline-block;
+
+                &__icon{
+                    position: absolute;
+                    top:-4px;
+                    right:-12px;
+                    width:1.5rem;
+                    height:1.5rem;
+                }
             }
         }
     }

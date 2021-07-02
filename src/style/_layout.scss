@@ -3,6 +3,7 @@
 .layout{
     position:fixed;
     // padding: 0.5rem 2.2rem;
+    overflow-y: scroll;
     top:0;
     left:0;
     width:100%;
@@ -34,10 +35,11 @@ main{
 }
 .main{
     flex:65%;
-    padding-left: 5rem;
+    padding-left: 10rem;
 
     &__display{
-        background-color:rgba(0,0,0,0.3)
+        background-color:rgba(0,0,0,0.3);
+        padding:2rem;
     }
     
 }
