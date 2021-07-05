@@ -214,6 +214,7 @@ nav .bookmark__text {
 .today__max--icon {
   width: 11rem;
   height: 11rem;
+  fill: white;
 }
 
 .today__max--main {
@@ -371,6 +372,7 @@ nav .bookmark__text {
   height: 6rem;
   display: block;
   margin: 0 auto;
+  fill: white;
 }
 
 .following .day__main--text {
