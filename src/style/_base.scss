@@ -9,6 +9,30 @@
     letter-spacing: 0.6px;
 }
 
+//===============MEDIA QUERIES VARIEBLES============
+$bigger:62.5em; //1000px
+$big:56.65em; //900px
+$medium:43.75em; //700px
+$medium-2:37.5em; //600px
+$small:31.25em; //500px;
+$smaller:25em; //400px
+
 html{
     font-size: 62.5%;
+    @media only screen and (max-width:$bigger){
+        font-size:57% ;
+    }
+    @media only screen and (max-width:$big){
+        font-size:55% ;
+    }
+
+    @media only screen and (max-width:$medium){
+        font-size:52% ;
+    }
+    @media only screen and (max-width:$medium-2){
+        font-size:49% ;
+    }
+    @media only screen and (max-width:$small){
+        font-size:47% ;
+    }
 }
