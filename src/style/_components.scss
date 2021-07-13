@@ -126,6 +126,46 @@ nav{
         }
     }
 }
+.welcome-text{
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color:#c4c4c4;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin:8rem 0;
+}
+.spinner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 8rem 0;
+
+    &__main{
+        border: 0.3rem solid rgba(255,255,255,0.24);
+        backdrop-filter: blur(0.5px);
+        border-radius: 50%;
+        border-top: 0.3rem solid #f6f6f6;
+        width:3.5rem;
+        height:3.5rem;
+        animation: spin 1s linear infinite;
+    }
+
+    &__text{
+        color:#f6f6f6;
+        margin-top:0.4rem;
+        font-size: 1.2rem;
+
+    }
+
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 .today{
     display: flex;

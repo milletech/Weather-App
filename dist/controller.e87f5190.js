@@ -870,7 +870,134 @@ try {
 
 },{}],"src/images/sprite.svg":[function(require,module,exports) {
 module.exports = "/sprite.44983e72.svg";
-},{}],"src/js/model.js":[function(require,module,exports) {
+},{}],"src/js/views/view.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _sprite = _interopRequireDefault(require("../../images/sprite.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
+
+var _parentMain = /*#__PURE__*/new WeakMap();
+
+var _parentFoll = /*#__PURE__*/new WeakMap();
+
+var _data = /*#__PURE__*/new WeakMap();
+
+var _clear = /*#__PURE__*/new WeakSet();
+
+var _generateMarkUp = /*#__PURE__*/new WeakSet();
+
+var _generateMarkFoll = /*#__PURE__*/new WeakSet();
+
+var WeatherView = /*#__PURE__*/function () {
+  function WeatherView() {
+    _classCallCheck(this, WeatherView);
+
+    _generateMarkFoll.add(this);
+
+    _generateMarkUp.add(this);
+
+    _clear.add(this);
+
+    _parentMain.set(this, {
+      writable: true,
+      value: document.querySelector(".main__display")
+    });
+
+    _parentFoll.set(this, {
+      writable: true,
+      value: document.querySelector(".following")
+    });
+
+    _data.set(this, {
+      writable: true,
+      value: void 0
+    });
+  }
+
+  _createClass(WeatherView, [{
+    key: "render",
+    value: // Public Methods
+
+    /*Render The UI*/
+    function render(data) {
+      _classPrivateFieldSet(this, _data, data);
+
+      var markupMain = _classPrivateMethodGet(this, _generateMarkUp, _generateMarkUp2).call(this);
+
+      _classPrivateMethodGet(this, _clear, _clear2).call(this);
+
+      _classPrivateFieldGet(this, _parentMain).insertAdjacentHTML("afterbegin", markupMain);
+
+      for (var i = 1; i < _classPrivateFieldGet(this, _data).consolidated_weather.length - 1; i++) {
+        var dayData = _classPrivateFieldGet(this, _data).consolidated_weather[i];
+
+        var markupFoll = _classPrivateMethodGet(this, _generateMarkFoll, _generateMarkFoll2).call(this, dayData);
+
+        _classPrivateFieldGet(this, _parentFoll).insertAdjacentHTML("beforeend", markupFoll);
+      }
+    }
+    /*Render The Error Message*/
+
+    /*Render The Spinner*/
+
+  }, {
+    key: "renderSpin",
+    value: function renderSpin() {
+      var markup = "\n            <div class=\"spinner\">\n                <div class=\"spinner__main\">\n                </div>\n                <p class=\"spinner__text\">Loading...</p>\n            </div>\n            ";
+
+      _classPrivateMethodGet(this, _clear, _clear2).call(this);
+
+      _classPrivateFieldGet(this, _parentMain).insertAdjacentHTML("afterbegin", markup);
+    } // Private Methods
+
+  }]);
+
+  return WeatherView;
+}();
+
+function _clear2() {
+  _classPrivateFieldGet(this, _parentMain).innerHTML = "";
+  _classPrivateFieldGet(this, _parentFoll).innerHTML = "";
+}
+
+function _generateMarkUp2() {
+  var todayWeather = _classPrivateFieldGet(this, _data).consolidated_weather[0];
+
+  return "\n        <div class=\"today\"  id=\"".concat(_classPrivateFieldGet(this, _data).woeid, "\">\n            <div class=\"today__max\">\n                <svg class=\"today__max--icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(todayWeather.weather_state_abbr, "\"></use>\n                </svg>\n                <div class=\"today__max--main\">\n                    <p class=\"max-temp\">").concat(Math.round(todayWeather.max_temp), "\n                        <svg class=\"max-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                    <p class=\"min-temp\">").concat(Math.round(todayWeather.min_temp), "\n                        <svg class=\"min-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                </div>\n            </div>\n            <div class=\"today__more\">\n                <p>it is ").concat(todayWeather.weather_state_name, " today with:</p>\n\n                <div class=\"extra\">\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-windmill\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(Math.round(todayWeather.wind_speed), "</span>Km/h\n                            <span>").concat(todayWeather.wind_direction_compass, "</span>\n                        </p>\n\n                    </div>\n\n\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-rain-drops\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(todayWeather.humidity, "</span>%\n                        </p>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"bottom\">\n            <div class=\"place\">\n                <p class=\"place__first\"><span class=\"city\">").concat(_classPrivateFieldGet(this, _data).title, "</span>,<span class=\"province\">").concat(_classPrivateFieldGet(this, _data).parent.title, "</span></p>\n                <p class=\"place__second\"><span class='country'>").concat(_classPrivateFieldGet(this, _data).parent.title, "</span></p>\n            </div>\n\n            <svg class=\"bottom__icon\">\n                <use xlink:href=\"").concat(_sprite.default, "#icon-Bookmark-save\"></use>\n            </svg>\n        </div>\n    </div>");
+}
+
+function _generateMarkFoll2(daydata) {
+  return "\n            <div class=\"day\">\n                <p class=\"day__date\">".concat(daydata.applicable_date, "</p>\n                <div class=\"day__main\">\n                    <svg class=\"day__main--icon\">\n                        <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(daydata.weather_state_abbr, "\"></use>\n                    </svg>\n                    <p class=\"day__main--text\">").concat(daydata.weather_state_name, "</p>\n                </div>\n                \n                <div class=\"maxmin\">\n                    <p class=\"max-temp\">").concat(Math.round(daydata.max_temp), "\n                        <svg class=\"max-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                    <p class=\"min-temp\">").concat(Math.round(daydata.min_temp), "\n                        <svg class=\"min-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                </div>\n            </div>\n        ");
+}
+
+var _default = new WeatherView();
+
+exports.default = _default;
+},{"../../images/sprite.svg":"src/images/sprite.svg"}],"src/js/model.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -929,6 +1056,8 @@ require("regenerator-runtime/runtime");
 
 var _sprite = _interopRequireDefault(require("../images/sprite.svg"));
 
+var _view = _interopRequireDefault(require("../js/views/view.js"));
+
 var model = _interopRequireWildcard(require("./model.js"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -947,7 +1076,7 @@ var parentFoll = document.querySelector(".following");
 
 var showWeather = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var id, data, todayWeather, markupMain, i, dayData, markupFoll;
+    var id, data;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -963,42 +1092,34 @@ var showWeather = /*#__PURE__*/function () {
             return _context.abrupt("return");
 
           case 4:
-            console.log(id); // 1) Load Data
+            console.log(id); // 1) Render Spinner
 
-            _context.next = 7;
+            _view.default.renderSpin(); // 2) Load Data
+
+
+            _context.next = 8;
             return model.getWeather(id);
 
-          case 7:
+          case 8:
             data = _context.sent;
-            todayWeather = data.consolidated_weather[0];
-            console.log(data); // console.log(todayWeather)
-            // 2)Render Data
+            console.log(data); // 3)Render Data
 
-            parentMain.innerHTML = "";
-            parentFoll.innerHTML = "";
-            markupMain = "\n        <div class=\"today\"  id=\"".concat(data.woeid, "\">\n            <div class=\"today__max\">\n                <svg class=\"today__max--icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(todayWeather.weather_state_abbr, "\"></use>\n                </svg>\n                <div class=\"today__max--main\">\n                    <p class=\"max-temp\">").concat(Math.round(todayWeather.max_temp), "\n                        <svg class=\"max-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                    <p class=\"min-temp\">").concat(Math.round(todayWeather.min_temp), "\n                        <svg class=\"min-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                </div>\n            </div>\n            <div class=\"today__more\">\n                <p>it is ").concat(todayWeather.weather_state_name, " today with:</p>\n\n                <div class=\"extra\">\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-windmill\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(Math.round(todayWeather.wind_speed), "</span>Km/h\n                            <span>").concat(todayWeather.wind_direction_compass, "</span>\n                        </p>\n\n                    </div>\n\n\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-rain-drops\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(todayWeather.humidity, "</span>%\n                        </p>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n            \n            <div class=\"bottom\">\n                <div class=\"place\">\n                    <p class=\"place__first\"><span class=\"city\">").concat(data.title, "</span>,<span class=\"province\">").concat(data.parent.title, "</span></p>\n                    <p class=\"place__second\"><span class='country'>").concat(data.parent.title, "</span></p>\n                </div>\n\n                <svg class=\"bottom__icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-Bookmark-save\"></use>\n                </svg>\n            </div>\n        </div>");
-            parentMain.insertAdjacentHTML("afterbegin", markupMain);
+            _view.default.render(data);
 
-            for (i = 1; i < data.consolidated_weather.length - 1; i++) {
-              dayData = data.consolidated_weather[i];
-              markupFoll = "\n            <div class=\"day\">\n                <p class=\"day__date\">".concat(dayData.applicable_date, "</p>\n                <div class=\"day__main\">\n                    <svg class=\"day__main--icon\">\n                        <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(dayData.weather_state_abbr, "\"></use>\n                    </svg>\n                    <p class=\"day__main--text\">").concat(dayData.weather_state_name, "</p>\n                </div>\n                \n                <div class=\"maxmin\">\n                    <p class=\"max-temp\">").concat(Math.round(dayData.max_temp), "\n                        <svg class=\"max-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                    <p class=\"min-temp\">").concat(Math.round(dayData.min_temp), "\n                        <svg class=\"min-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                </div>\n            </div>");
-              parentFoll.insertAdjacentHTML("beforeend", markupFoll);
-            }
-
-            _context.next = 20;
+            _context.next = 16;
             break;
 
-          case 17:
-            _context.prev = 17;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 20:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 17]]);
+    }, _callee, null, [[0, 13]]);
   }));
 
   return function showWeather() {
@@ -1008,7 +1129,7 @@ var showWeather = /*#__PURE__*/function () {
 
 window.addEventListener("hashchange", showWeather);
 window.addEventListener("load", showWeather);
-},{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","../images/sprite.svg":"src/images/sprite.svg","./model.js":"src/js/model.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","../images/sprite.svg":"src/images/sprite.svg","../js/views/view.js":"src/js/views/view.js","./model.js":"src/js/model.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1036,7 +1157,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60698" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56249" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
