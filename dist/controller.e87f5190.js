@@ -870,7 +870,7 @@ try {
 
 },{}],"src/images/sprite.svg":[function(require,module,exports) {
 module.exports = "/sprite.44983e72.svg";
-},{}],"src/js/views/view.js":[function(require,module,exports) {
+},{}],"src/js/views/weatherView.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -960,8 +960,26 @@ var WeatherView = /*#__PURE__*/function () {
         _classPrivateFieldGet(this, _parentFoll).insertAdjacentHTML("beforeend", markupFoll);
       }
     }
+    /*Handler Function */
+
+  }, {
+    key: "addHandlerRender",
+    value: function addHandlerRender(handler) {
+      ["hashchange", "load"].forEach(function (ev) {
+        return window.addEventListener(ev, handler);
+      });
+    }
     /*Render The Error Message*/
 
+  }, {
+    key: "renderError",
+    value: function renderError() {
+      var markup = "\n            <div class=\"error\">\n                <p class=\"error__text\">\n                    <svg class=\"error__icon\">\n                        <use xlink:href=\"".concat(_sprite.default, "#icon-error_outline\"></use>\n                    </svg>Sorry weather can't be loaded, look for another city \n                </p>\n            </div>\n            ");
+
+      _classPrivateMethodGet(this, _clear, _clear2).call(this);
+
+      _classPrivateFieldGet(this, _parentMain).insertAdjacentHTML("afterbegin", markup);
+    }
     /*Render The Spinner*/
 
   }, {
@@ -1003,13 +1021,14 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getWeather = void 0;
+exports.searchCity = exports.getWeather = void 0;
+
+require("regenerator-runtime/runtime");
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// Get Weather of That City Based On it woeid
 var getWeather = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(id) {
     var res, data;
@@ -1019,7 +1038,7 @@ var getWeather = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/".concat(id));
+            return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/".concat(id, "/"));
 
           case 3:
             res = _context.sent;
@@ -1028,35 +1047,79 @@ var getWeather = /*#__PURE__*/function () {
 
           case 6:
             data = _context.sent;
+            console.log(res); // let abbr=data.consolidated_weather[0].weather_state_abbr;
+            // let image=await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/static/img/weather/png/${abbr}.png`);
+            // let dataImg=await image.json();
+
             return _context.abrupt("return", data);
 
-          case 10:
-            _context.prev = 10;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 13:
+          case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 11]]);
   }));
 
   return function getWeather(_x) {
     return _ref.apply(this, arguments);
   };
-}();
+}(); // Search City Based On the Query Input
+
 
 exports.getWeather = getWeather;
-},{}],"src/js/controller.js":[function(require,module,exports) {
+
+var searchCity = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(query) {
+    var res, data;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=".concat(query));
+
+          case 3:
+            res = _context2.sent;
+            _context2.next = 6;
+            return res.json();
+
+          case 6:
+            data = _context2.sent;
+            console.log(data);
+            return _context2.abrupt("return", data);
+
+          case 11:
+            _context2.prev = 11;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 14:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 11]]);
+  }));
+
+  return function searchCity(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.searchCity = searchCity;
+},{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js"}],"src/js/controller.js":[function(require,module,exports) {
 "use strict";
 
 require("regenerator-runtime/runtime");
 
-var _sprite = _interopRequireDefault(require("../images/sprite.svg"));
-
-var _view = _interopRequireDefault(require("../js/views/view.js"));
+var _weatherView = _interopRequireDefault(require("./views/weatherView.js"));
 
 var model = _interopRequireWildcard(require("./model.js"));
 
@@ -1092,34 +1155,35 @@ var showWeather = /*#__PURE__*/function () {
             return _context.abrupt("return");
 
           case 4:
-            console.log(id); // 1) Render Spinner
+            // 1) Render Spinner
+            _weatherView.default.renderSpin(); // 2) Load Data
 
-            _view.default.renderSpin(); // 2) Load Data
 
-
-            _context.next = 8;
+            _context.next = 7;
             return model.getWeather(id);
 
-          case 8:
+          case 7:
             data = _context.sent;
             console.log(data); // 3)Render Data
 
-            _view.default.render(data);
+            _weatherView.default.render(data);
 
-            _context.next = 16;
+            _context.next = 15;
             break;
 
-          case 13:
-            _context.prev = 13;
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
 
-          case 16:
+            // console.log(err)
+            _weatherView.default.renderError();
+
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 13]]);
+    }, _callee, null, [[0, 12]]);
   }));
 
   return function showWeather() {
@@ -1127,9 +1191,53 @@ var showWeather = /*#__PURE__*/function () {
   };
 }();
 
-window.addEventListener("hashchange", showWeather);
-window.addEventListener("load", showWeather);
-},{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","../images/sprite.svg":"src/images/sprite.svg","../js/views/view.js":"src/js/views/view.js","./model.js":"src/js/model.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var showSearchResult = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(query) {
+    var data;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            query = query.toLowerCase(); // console.log(query)
+
+            _context2.next = 4;
+            return model.searchCity(query);
+
+          case 4:
+            data = _context2.sent;
+            console.log(data);
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+
+            _weatherView.default.renderError();
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 8]]);
+  }));
+
+  return function showSearchResult(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}(); // // ["hashchange","load"].forEach(ev=>window.addEventListener(ev,showWeather));
+// window.addEventListener("load",showWeather);
+// window.addEventListener("hashchange",showWeather);
+
+
+var init = function init() {
+  _weatherView.default.addHandlerRender(showWeather);
+};
+
+init();
+},{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","./views/weatherView.js":"src/js/views/weatherView.js","./model.js":"src/js/model.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1157,7 +1265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56249" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52856" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

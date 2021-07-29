@@ -27,11 +27,29 @@ class WeatherView{
                 this.#parentFoll.insertAdjacentHTML("beforeend",markupFoll);
             }
         }
+        /*Handler Function */
+
+        addHandlerRender(handler){
+            ["hashchange","load"].forEach(ev=>window.addEventListener(ev,handler));
+        }
 
 
         /*Render The Error Message*/
 
+        renderError(){
+            const markup=`
+            <div class="error">
+                <p class="error__text">
+                    <svg class="error__icon">
+                        <use xlink:href="${icons}#icon-error_outline"></use>
+                    </svg>Sorry weather can't be loaded, look for another city 
+                </p>
+            </div>
+            `
+            this.#clear();
+            this.#parentMain.insertAdjacentHTML("afterbegin",markup);
 
+        }
 
 
         /*Render The Spinner*/

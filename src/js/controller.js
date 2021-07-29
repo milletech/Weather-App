@@ -1,9 +1,6 @@
-
 import 'regenerator-runtime/runtime';
 
-import icons from "../images/sprite.svg";
-
-import weatherView from "../js/views/view.js"
+import weatherView from "./views/weatherView.js"
 import * as model from "./model.js";
 
 
@@ -20,11 +17,8 @@ const showWeather=async function(){
     try{
         const id=window.location.hash.slice(1);
 
-        
-
         if(!id) return;
-        console.log(id)
-        
+
         // 1) Render Spinner
         weatherView.renderSpin()
 
@@ -38,10 +32,32 @@ const showWeather=async function(){
 
 
     }catch(err){
-        console.log(err)
+        // console.log(err)
+        weatherView.renderError();
+    }
+}
+
+const showSearchResult=async function(query){
+    try{
+        query=query.toLowerCase();
+        // console.log(query)
+        let data=await model.searchCity(query);
+        console.log(data);
+    }catch(err){
+        weatherView.renderError();
     }
 }
 
 
-window.addEventListener("hashchange",showWeather);
-window.addEventListener("load",showWeather);
+// // ["hashchange","load"].forEach(ev=>window.addEventListener(ev,showWeather));
+// window.addEventListener("load",showWeather);
+// window.addEventListener("hashchange",showWeather);
+
+
+const init=function(){
+    weatherView.addHandlerRender(showWeather);
+}
+
+init();
+
+
