@@ -1015,6 +1015,149 @@ function _generateMarkFoll2(daydata) {
 var _default = new WeatherView();
 
 exports.default = _default;
+},{"../../images/sprite.svg":"src/images/sprite.svg"}],"src/js/views/searchView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+var _search = /*#__PURE__*/new WeakMap();
+
+var SearchView = /*#__PURE__*/function () {
+  function SearchView() {
+    _classCallCheck(this, SearchView);
+
+    _search.set(this, {
+      writable: true,
+      value: document.querySelector(".searchform")
+    });
+  }
+
+  _createClass(SearchView, [{
+    key: "getQuery",
+    value: function getQuery() {
+      var query = document.querySelector(".searchInput").value;
+      return query;
+    }
+  }, {
+    key: "addHandlerSearch",
+    value: function addHandlerSearch(handler) {
+      _classPrivateFieldGet(this, _search).addEventListener("submit", function (e) {
+        e.preventDefault();
+        handler();
+      });
+    }
+  }]);
+
+  return SearchView;
+}();
+
+var _default = new SearchView();
+
+exports.default = _default;
+},{}],"src/js/views/resultView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _sprite = _interopRequireDefault(require("../../images/sprite.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
+
+var _parentEle = /*#__PURE__*/new WeakMap();
+
+var _data = /*#__PURE__*/new WeakMap();
+
+var _clear = /*#__PURE__*/new WeakSet();
+
+var _generateMarkUp = /*#__PURE__*/new WeakSet();
+
+var resultView = /*#__PURE__*/function () {
+  function resultView() {
+    _classCallCheck(this, resultView);
+
+    _generateMarkUp.add(this);
+
+    _clear.add(this);
+
+    _parentEle.set(this, {
+      writable: true,
+      value: document.querySelector(".search-result")
+    });
+
+    _data.set(this, {
+      writable: true,
+      value: void 0
+    });
+  }
+
+  _createClass(resultView, [{
+    key: "render",
+    value: // Public Methods
+    function render(data) {
+      _classPrivateFieldSet(this, _data, data); // for (const i of data) {
+      //     i.then(el=>{
+      //         console.log(el)
+      //     }).catch(err=>{console.log(err)})
+      // }
+
+
+      _classPrivateMethodGet(this, _clear, _clear2).call(this);
+
+      var markup = _classPrivateMethodGet(this, _generateMarkUp, _generateMarkUp2).call(this);
+
+      _classPrivateFieldGet(this, _parentEle).insertAdjacentHTML('afterbegin', markup);
+    }
+  }]);
+
+  return resultView;
+}();
+
+function _clear2() {// this.#parentEle.innerHTML="";
+}
+
+function _generateMarkUp2() {
+  return "\n            <a href=\"#".concat(_classPrivateFieldGet(this, _data).woeid, "\" class=\"city\">\n                <div class=\"city__text\">\n                    <p class=\"city__text--1\">").concat(_classPrivateFieldGet(this, _data).title, "</p>\n                    <p class=\"city__text--2\">").concat(_classPrivateFieldGet(this, _data).parent.title, "</p>\n                </div>\n                <svg class=\"city__icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(_classPrivateFieldGet(this, _data).consolidated_weather[0].weather_state_abbr, "\"></use>\n                </svg>\n            </a> \n        ");
+}
+
+var _default = new resultView();
+
+exports.default = _default;
 },{"../../images/sprite.svg":"src/images/sprite.svg"}],"src/js/model.js":[function(require,module,exports) {
 "use strict";
 
@@ -1047,23 +1190,19 @@ var getWeather = /*#__PURE__*/function () {
 
           case 6:
             data = _context.sent;
-            console.log(res); // let abbr=data.consolidated_weather[0].weather_state_abbr;
-            // let image=await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/static/img/weather/png/${abbr}.png`);
-            // let dataImg=await image.json();
-
             return _context.abrupt("return", data);
 
-          case 11:
-            _context.prev = 11;
+          case 10:
+            _context.prev = 10;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 14:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 11]]);
+    }, _callee, null, [[0, 10]]);
   }));
 
   return function getWeather(_x) {
@@ -1075,37 +1214,74 @@ var getWeather = /*#__PURE__*/function () {
 exports.getWeather = getWeather;
 
 var searchCity = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(query) {
-    var res, data;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(query) {
+    var res, data, allData, newData;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
+            _context3.prev = 0;
+            _context3.next = 3;
             return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=".concat(query));
 
           case 3:
-            res = _context2.sent;
-            _context2.next = 6;
+            res = _context3.sent;
+            _context3.next = 6;
             return res.json();
 
           case 6:
-            data = _context2.sent;
-            console.log(data);
-            return _context2.abrupt("return", data);
+            data = _context3.sent;
+            allData = [];
+            newData = data.map( /*#__PURE__*/function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(el) {
+                var id, newres, newdata;
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        id = el.woeid;
+                        _context2.next = 3;
+                        return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/".concat(id, "/"));
 
-          case 11:
-            _context2.prev = 11;
-            _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
+                      case 3:
+                        newres = _context2.sent;
+                        _context2.next = 6;
+                        return newres.json();
 
-          case 14:
+                      case 6:
+                        newdata = _context2.sent;
+                        return _context2.abrupt("return", newdata);
+
+                      case 8:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2);
+              }));
+
+              return function (_x3) {
+                return _ref3.apply(this, arguments);
+              };
+            }()); // for (const i of newData) {
+            //   let nice=await i;
+            //   console.log(nice)
+            // }
+            // console.log(newData)
+
+            return _context3.abrupt("return", newData);
+
+          case 12:
+            _context3.prev = 12;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
+
+          case 15:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2, null, [[0, 11]]);
+    }, _callee3, null, [[0, 12]]);
   }));
 
   return function searchCity(_x2) {
@@ -1121,6 +1297,10 @@ require("regenerator-runtime/runtime");
 
 var _weatherView = _interopRequireDefault(require("./views/weatherView.js"));
 
+var _searchView = _interopRequireDefault(require("./views/searchView.js"));
+
+var _resultView = _interopRequireDefault(require("./views/resultView.js"));
+
 var model = _interopRequireWildcard(require("./model.js"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -1128,6 +1308,12 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -1164,26 +1350,27 @@ var showWeather = /*#__PURE__*/function () {
 
           case 7:
             data = _context.sent;
-            console.log(data); // 3)Render Data
 
+            // console.log(data);
+            // 3)Render Data
             _weatherView.default.render(data);
 
-            _context.next = 15;
+            _context.next = 14;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](0);
 
             // console.log(err)
             _weatherView.default.renderError();
 
-          case 15:
+          case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 11]]);
   }));
 
   return function showWeather() {
@@ -1192,52 +1379,83 @@ var showWeather = /*#__PURE__*/function () {
 }();
 
 var showSearchResult = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(query) {
-    var data;
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var query,
+        data,
+        _iterator,
+        _step,
+        i,
+        _args2 = arguments;
+
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.prev = 0;
-            query = query.toLowerCase(); // console.log(query)
+            query = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : _searchView.default.getQuery();
+            _context2.prev = 1;
+            query = query.toLowerCase(); // Load Data
 
-            _context2.next = 4;
+            _context2.next = 5;
             return model.searchCity(query);
 
-          case 4:
+          case 5:
             data = _context2.sent;
-            console.log(data);
-            _context2.next = 11;
+            // Render Data
+            // console.log(data)
+            _iterator = _createForOfIteratorHelper(data);
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                i = _step.value;
+                i.then(function (el) {
+                  console.log(el);
+
+                  _resultView.default.render(el);
+                }).catch(function (err) {
+                  console.log(err);
+                });
+              } // resultView.render(data);
+
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            _context2.next = 13;
             break;
 
-          case 8:
-            _context2.prev = 8;
-            _context2.t0 = _context2["catch"](0);
+          case 10:
+            _context2.prev = 10;
+            _context2.t0 = _context2["catch"](1);
 
             _weatherView.default.renderError();
 
-          case 11:
+          case 13:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[1, 10]]);
   }));
 
-  return function showSearchResult(_x) {
+  return function showSearchResult() {
     return _ref2.apply(this, arguments);
   };
 }(); // // ["hashchange","load"].forEach(ev=>window.addEventListener(ev,showWeather));
 // window.addEventListener("load",showWeather);
 // window.addEventListener("hashchange",showWeather);
+// showSearchResult("san");
 
 
 var init = function init() {
   _weatherView.default.addHandlerRender(showWeather);
+
+  _searchView.default.addHandlerSearch(showSearchResult);
 };
 
 init();
-},{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","./views/weatherView.js":"src/js/views/weatherView.js","./model.js":"src/js/model.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","./views/weatherView.js":"src/js/views/weatherView.js","./views/searchView.js":"src/js/views/searchView.js","./views/resultView.js":"src/js/views/resultView.js","./model.js":"src/js/model.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1265,7 +1483,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52856" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64061" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
