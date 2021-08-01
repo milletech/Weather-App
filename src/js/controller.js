@@ -42,35 +42,35 @@ const showWeather=async function(){
 const showSearchResult=async function(query=searchView.getQuery()){
     try{
         query=query.toLowerCase();
-        // Load Data
+
+        if(!query) return;
+
+        // 1)Render Spinner
+        resultView.renderSpinner();
+
+
+        // 2) Load Data
         let data=await model.searchCity(query);
 
-        // Render Data
-        // console.log(data)
-        for (const i of data) {
-            i.then(el=>{
-                console.log(el)
-                resultView.render(el)
-            }).catch(err=>{console.log(err)})
+
+        if(data.length==0){
+            resultView.renderError();
+            return;
         }
-        // resultView.render(data);
+
+        // 3) Render Data
+        resultView.render(data);
         
     }catch(err){
-        weatherView.renderError();
+        resultView.renderError();
     }
 }
 
 
-// // ["hashchange","load"].forEach(ev=>window.addEventListener(ev,showWeather));
-// window.addEventListener("load",showWeather);
-// window.addEventListener("hashchange",showWeather);
-
-// showSearchResult("san");
 
 const init=function(){
     weatherView.addHandlerRender(showWeather);
-    searchView.addHandlerSearch(showSearchResult);
-    
+    searchView.addHandlerSearch(showSearchResult); 
 }
 
 init();

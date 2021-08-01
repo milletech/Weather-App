@@ -7,14 +7,6 @@ export const getWeather= async function(id){
         // let res=await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/44418`);
         let res=await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${id}/`);
         let data=await res.json()
-
-
-
-        // console.log(data)
-    
-        // let abbr=data.consolidated_weather[0].weather_state_abbr;
-        // let image=await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/static/img/weather/png/${abbr}.png`);
-        // let dataImg=await image.json();
         return data;
     }catch(err){
         console.log(err)
@@ -37,14 +29,6 @@ export const searchCity=async function(query){
            return newdata;
         })
        
-        // for (const i of newData) {
-        //   let nice=await i;
-        //   console.log(nice)
-            
-        // }
-
-        // console.log(newData)
-
         return newData;
 
     }catch(err){

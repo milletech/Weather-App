@@ -974,7 +974,7 @@ var WeatherView = /*#__PURE__*/function () {
   }, {
     key: "renderError",
     value: function renderError() {
-      var markup = "\n            <div class=\"error\">\n                <p class=\"error__text\">\n                    <svg class=\"error__icon\">\n                        <use xlink:href=\"".concat(_sprite.default, "#icon-error_outline\"></use>\n                    </svg>Sorry weather can't be loaded, look for another city \n                </p>\n            </div>\n            ");
+      var markup = "\n            <div class=\"error\">\n                <p class=\"error__text\">\n                    <svg class=\"error__icon\">\n                        <use xlink:href=\"".concat(_sprite.default, "#icon-error_outline\"></use>\n                    </svg>Oops! weather can't be loaded :( , look for another city \n                </p>\n            </div>\n            ");
 
       _classPrivateMethodGet(this, _clear, _clear2).call(this);
 
@@ -1005,7 +1005,7 @@ function _clear2() {
 function _generateMarkUp2() {
   var todayWeather = _classPrivateFieldGet(this, _data).consolidated_weather[0];
 
-  return "\n        <div class=\"today\"  id=\"".concat(_classPrivateFieldGet(this, _data).woeid, "\">\n            <div class=\"today__max\">\n                <svg class=\"today__max--icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(todayWeather.weather_state_abbr, "\"></use>\n                </svg>\n                <div class=\"today__max--main\">\n                    <p class=\"max-temp\">").concat(Math.round(todayWeather.max_temp), "\n                        <svg class=\"max-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                    <p class=\"min-temp\">").concat(Math.round(todayWeather.min_temp), "\n                        <svg class=\"min-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                </div>\n            </div>\n            <div class=\"today__more\">\n                <p>it is ").concat(todayWeather.weather_state_name, " today with:</p>\n\n                <div class=\"extra\">\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-windmill\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(Math.round(todayWeather.wind_speed), "</span>Km/h\n                            <span>").concat(todayWeather.wind_direction_compass, "</span>\n                        </p>\n\n                    </div>\n\n\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-rain-drops\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(todayWeather.humidity, "</span>%\n                        </p>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"bottom\">\n            <div class=\"place\">\n                <p class=\"place__first\"><span class=\"city\">").concat(_classPrivateFieldGet(this, _data).title, "</span>,<span class=\"province\">").concat(_classPrivateFieldGet(this, _data).parent.title, "</span></p>\n                <p class=\"place__second\"><span class='country'>").concat(_classPrivateFieldGet(this, _data).parent.title, "</span></p>\n            </div>\n\n            <svg class=\"bottom__icon\">\n                <use xlink:href=\"").concat(_sprite.default, "#icon-Bookmark-save\"></use>\n            </svg>\n        </div>\n    </div>");
+  return "\n        <div class=\"today\"  id=\"".concat(_classPrivateFieldGet(this, _data).woeid, "\">\n            <div class=\"today__max\">\n                <svg class=\"today__max--icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(todayWeather.weather_state_abbr, "\"></use>\n                </svg>\n                <div class=\"today__max--main\">\n                    <p class=\"max-temp\">").concat(Math.round(todayWeather.max_temp), "\n                        <svg class=\"max-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                    <p class=\"min-temp\">").concat(Math.round(todayWeather.min_temp), "\n                        <svg class=\"min-temp__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-degrees-celcius\"></use>\n                        </svg>\n                    </p>\n                </div>\n            </div>\n            <div class=\"today__more\">\n                <p>Today's Weather : ").concat(todayWeather.weather_state_name, "</p>\n\n                <div class=\"extra\">\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-windmill\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(Math.round(todayWeather.wind_speed), "</span>Km/h\n                            <span>").concat(todayWeather.wind_direction_compass, "</span>\n                        </p>\n\n                    </div>\n\n\n                    <div class=\"extra__text\">\n                        <svg class=\"extra__icon\">\n                            <use xlink:href=\"").concat(_sprite.default, "#icon-rain-drops\"></use>\n                        </svg>\n\n                        <p class=\"extra__text--main\">\n                            <span>").concat(todayWeather.humidity, "</span>%\n                        </p>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"bottom\">\n            <div class=\"place\">\n                <p class=\"place__first\"><span class=\"city\">").concat(_classPrivateFieldGet(this, _data).title, "</span>,<span class=\"province\">").concat(_classPrivateFieldGet(this, _data).parent.title, "</span></p>\n                <p class=\"place__second\"><span class='country'>").concat(_classPrivateFieldGet(this, _data).parent.title, "</span></p>\n            </div>\n\n            <svg class=\"bottom__icon\">\n                <use xlink:href=\"").concat(_sprite.default, "#icon-Bookmark-save\"></use>\n            </svg>\n        </div>\n    </div>");
 }
 
 function _generateMarkFoll2(daydata) {
@@ -1081,6 +1081,12 @@ var _sprite = _interopRequireDefault(require("../../images/sprite.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1130,29 +1136,63 @@ var resultView = /*#__PURE__*/function () {
     key: "render",
     value: // Public Methods
     function render(data) {
-      _classPrivateFieldSet(this, _data, data); // for (const i of data) {
-      //     i.then(el=>{
-      //         console.log(el)
-      //     }).catch(err=>{console.log(err)})
-      // }
+      var _this = this;
 
+      _classPrivateFieldSet(this, _data, data);
 
       _classPrivateMethodGet(this, _clear, _clear2).call(this);
 
-      var markup = _classPrivateMethodGet(this, _generateMarkUp, _generateMarkUp2).call(this);
+      var _iterator = _createForOfIteratorHelper(data),
+          _step;
 
-      _classPrivateFieldGet(this, _parentEle).insertAdjacentHTML('afterbegin', markup);
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var i = _step.value;
+          i.then(function (el) {
+            var markup = _classPrivateMethodGet(_this, _generateMarkUp, _generateMarkUp2).call(_this, el);
+
+            _classPrivateFieldGet(_this, _parentEle).insertAdjacentHTML("beforeend", markup);
+          }).catch(function (err) {
+            console.log(err);
+          });
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      ; // this.#data.map(this.#generateMarkUp).join("")
+    }
+  }, {
+    key: "renderSpinner",
+    value: function renderSpinner() {
+      var markup = "\n        <div class=\"sidespinner\">\n            <div class=\"sidespinner__main\">\n            </div>\n            <p class=\"sidespinner__text\">Loading...</p>\n        </div> ";
+
+      _classPrivateMethodGet(this, _clear, _clear2).call(this);
+
+      _classPrivateFieldGet(this, _parentEle).insertAdjacentHTML("afterbegin", markup);
+    }
+  }, {
+    key: "renderError",
+    value: function renderError() {
+      var markup = "\n        <div class=\"search-error\">\n            <p>city can't be found!</p>\n        </div> \n        ";
+
+      _classPrivateMethodGet(this, _clear, _clear2).call(this);
+
+      _classPrivateFieldGet(this, _parentEle).insertAdjacentHTML("afterbegin", markup);
     }
   }]);
 
   return resultView;
 }();
 
-function _clear2() {// this.#parentEle.innerHTML="";
+function _clear2() {
+  _classPrivateFieldGet(this, _parentEle).innerHTML = "";
 }
 
-function _generateMarkUp2() {
-  return "\n            <a href=\"#".concat(_classPrivateFieldGet(this, _data).woeid, "\" class=\"city\">\n                <div class=\"city__text\">\n                    <p class=\"city__text--1\">").concat(_classPrivateFieldGet(this, _data).title, "</p>\n                    <p class=\"city__text--2\">").concat(_classPrivateFieldGet(this, _data).parent.title, "</p>\n                </div>\n                <svg class=\"city__icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(_classPrivateFieldGet(this, _data).consolidated_weather[0].weather_state_abbr, "\"></use>\n                </svg>\n            </a> \n        ");
+function _generateMarkUp2(el) {
+  return "\n            <a href=\"#".concat(el.woeid, "\" class=\"city\">\n                <div class=\"city__text\">\n                    <p class=\"city__text--1\">").concat(el.title, "</p>\n                    <p class=\"city__text--2\">").concat(el.parent.title, "</p>\n                </div>\n                <svg class=\"city__icon\">\n                    <use xlink:href=\"").concat(_sprite.default, "#icon-").concat(el.consolidated_weather[0].weather_state_abbr, "\"></use>\n                </svg>\n            </a> \n        ");
 }
 
 var _default = new resultView();
@@ -1263,12 +1303,7 @@ var searchCity = /*#__PURE__*/function () {
               return function (_x3) {
                 return _ref3.apply(this, arguments);
               };
-            }()); // for (const i of newData) {
-            //   let nice=await i;
-            //   console.log(nice)
-            // }
-            // console.log(newData)
-
+            }());
             return _context3.abrupt("return", newData);
 
           case 12:
@@ -1308,12 +1343,6 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -1382,71 +1411,67 @@ var showSearchResult = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
     var query,
         data,
-        _iterator,
-        _step,
-        i,
         _args2 = arguments;
-
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             query = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : _searchView.default.getQuery();
             _context2.prev = 1;
-            query = query.toLowerCase(); // Load Data
+            query = query.toLowerCase();
 
-            _context2.next = 5;
-            return model.searchCity(query);
-
-          case 5:
-            data = _context2.sent;
-            // Render Data
-            // console.log(data)
-            _iterator = _createForOfIteratorHelper(data);
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                i = _step.value;
-                i.then(function (el) {
-                  console.log(el);
-
-                  _resultView.default.render(el);
-                }).catch(function (err) {
-                  console.log(err);
-                });
-              } // resultView.render(data);
-
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
+            if (query) {
+              _context2.next = 5;
+              break;
             }
 
-            _context2.next = 13;
+            return _context2.abrupt("return");
+
+          case 5:
+            // 1)Render Spinner
+            _resultView.default.renderSpinner(); // 2) Load Data
+
+
+            _context2.next = 8;
+            return model.searchCity(query);
+
+          case 8:
+            data = _context2.sent;
+
+            if (!(data.length == 0)) {
+              _context2.next = 12;
+              break;
+            }
+
+            _resultView.default.renderError();
+
+            return _context2.abrupt("return");
+
+          case 12:
+            // 3) Render Data
+            _resultView.default.render(data);
+
+            _context2.next = 18;
             break;
 
-          case 10:
-            _context2.prev = 10;
+          case 15:
+            _context2.prev = 15;
             _context2.t0 = _context2["catch"](1);
 
-            _weatherView.default.renderError();
+            _resultView.default.renderError();
 
-          case 13:
+          case 18:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[1, 10]]);
+    }, _callee2, null, [[1, 15]]);
   }));
 
   return function showSearchResult() {
     return _ref2.apply(this, arguments);
   };
-}(); // // ["hashchange","load"].forEach(ev=>window.addEventListener(ev,showWeather));
-// window.addEventListener("load",showWeather);
-// window.addEventListener("hashchange",showWeather);
-// showSearchResult("san");
-
+}();
 
 var init = function init() {
   _weatherView.default.addHandlerRender(showWeather);
@@ -1483,7 +1508,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60932" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

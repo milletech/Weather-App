@@ -96,6 +96,16 @@ nav{
 
     .search-result{
         margin:2rem 0;
+
+        .search-error{
+            p{
+                font-size: 1.3rem;
+                color:white;
+                text-align: center;
+                letter-spacing: 0.1rem;
+
+            }
+        }
         .city{
             background-color: rgba(0,0,0,0.3);
             display: flex;
@@ -104,6 +114,7 @@ nav{
             padding:0.2rem 0.4rem;
             margin-bottom: 1.2rem;
             text-decoration: none;
+            transition: display 0.3s;
             
             &:hover{
                 background-color: rgba(0,0,0,0.5);
@@ -123,6 +134,8 @@ nav{
             &__icon{
                 width:4rem;
                 height:4rem;
+                fill:white;
+                color:white;
             }
         }
     }
@@ -135,6 +148,28 @@ nav{
     font-weight: 300;
     text-transform: uppercase;
     margin:8rem 0;
+}
+.sidespinner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    // margin: 1rem 0;
+
+    &__main{
+        border: 0.2rem solid rgba(255,255,255,0.24);
+        backdrop-filter: blur(0.5px);
+        border-radius: 50%;
+        border-top: 0.3rem solid #f6f6f6;
+        width:2rem;
+        height:2rem;
+        margin-right: 0.5rem;
+        animation: spin 1s linear infinite;
+    }
+    &__text{
+        color:#f6f6f6;
+        font-size: 1.2rem;
+    }
 }
 .spinner{
     display: flex;

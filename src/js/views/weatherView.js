@@ -42,7 +42,7 @@ class WeatherView{
                 <p class="error__text">
                     <svg class="error__icon">
                         <use xlink:href="${icons}#icon-error_outline"></use>
-                    </svg>Sorry weather can't be loaded, look for another city 
+                    </svg>Oops! weather can't be loaded :( , look for another city 
                 </p>
             </div>
             `
@@ -96,7 +96,7 @@ class WeatherView{
                 </div>
             </div>
             <div class="today__more">
-                <p>it is ${todayWeather.weather_state_name} today with:</p>
+                <p>Today's Weather : ${todayWeather.weather_state_name}</p>
 
                 <div class="extra">
                     <div class="extra__text">

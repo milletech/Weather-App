@@ -140,6 +140,13 @@ nav .bookmark__text {
   margin: 2rem 0;
 }
 
+.search .search-result .search-error p {
+  font-size: 1.3rem;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.1rem;
+}
+
 .search .search-result .city {
   background-color: rgba(0, 0, 0, 0.3);
   display: -webkit-box;
@@ -154,6 +161,8 @@ nav .bookmark__text {
   padding: 0.2rem 0.4rem;
   margin-bottom: 1.2rem;
   text-decoration: none;
+  -webkit-transition: display 0.3s;
+  transition: display 0.3s;
 }
 
 .search .search-result .city:hover {
@@ -176,6 +185,8 @@ nav .bookmark__text {
 .search .search-result .city__icon {
   width: 4rem;
   height: 4rem;
+  fill: white;
+  color: white;
 }
 
 .welcome-text {
@@ -186,6 +197,36 @@ nav .bookmark__text {
   font-weight: 300;
   text-transform: uppercase;
   margin: 8rem 0;
+}
+
+.sidespinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidespinner__main {
+  border: 0.2rem solid rgba(255, 255, 255, 0.24);
+  -webkit-backdrop-filter: blur(0.5px);
+          backdrop-filter: blur(0.5px);
+  border-radius: 50%;
+  border-top: 0.3rem solid #f6f6f6;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+
+.sidespinner__text {
+  color: #f6f6f6;
+  font-size: 1.2rem;
 }
 
 .spinner {
