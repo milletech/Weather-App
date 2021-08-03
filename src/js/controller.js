@@ -52,13 +52,15 @@ const showSearchResult=async function(query=searchView.getQuery()){
         // 2) Load Data
         let data=await model.searchCity(query);
 
+        console.log(data);
+
 
         if(data.length==0){
             resultView.renderError();
             return;
         }
 
-        // 3) Render Data
+        //3) Render Data
         resultView.render(data);
         
     }catch(err){

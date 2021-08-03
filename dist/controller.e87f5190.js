@@ -1208,6 +1208,12 @@ exports.searchCity = exports.getWeather = void 0;
 
 require("regenerator-runtime/runtime");
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1221,7 +1227,7 @@ var getWeather = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/".concat(id, "/"));
+            return fetch("https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/".concat(id, "/"));
 
           case 3:
             res = _context.sent;
@@ -1255,14 +1261,15 @@ exports.getWeather = getWeather;
 
 var searchCity = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(query) {
-    var res, data, allData, newData;
+    var res, data, allData, newData, _iterator, _step, i;
+
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=".concat(query));
+            return fetch("https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/search/?query=".concat(query));
 
           case 3:
             res = _context3.sent;
@@ -1272,6 +1279,7 @@ var searchCity = /*#__PURE__*/function () {
           case 6:
             data = _context3.sent;
             allData = [];
+            console.log(data);
             newData = data.map( /*#__PURE__*/function () {
               var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(el) {
                 var id, newres, newdata;
@@ -1281,7 +1289,7 @@ var searchCity = /*#__PURE__*/function () {
                       case 0:
                         id = el.woeid;
                         _context2.next = 3;
-                        return fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/".concat(id, "/"));
+                        return fetch("https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/".concat(id, "/"));
 
                       case 3:
                         newres = _context2.sent;
@@ -1304,19 +1312,37 @@ var searchCity = /*#__PURE__*/function () {
                 return _ref3.apply(this, arguments);
               };
             }());
+            _iterator = _createForOfIteratorHelper(data);
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                i = _step.value;
+                allData.push(i);
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            console.log(allData); // return newData.map(async el=>{
+            //     let data=await el;
+            //     return data;
+            // });
+
             return _context3.abrupt("return", newData);
 
-          case 12:
-            _context3.prev = 12;
+          case 16:
+            _context3.prev = 16;
             _context3.t0 = _context3["catch"](0);
             console.log(_context3.t0);
 
-          case 15:
+          case 19:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 12]]);
+    }, _callee3, null, [[0, 16]]);
   }));
 
   return function searchCity(_x2) {
@@ -1437,9 +1463,10 @@ var showSearchResult = /*#__PURE__*/function () {
 
           case 8:
             data = _context2.sent;
+            console.log(data);
 
             if (!(data.length == 0)) {
-              _context2.next = 12;
+              _context2.next = 13;
               break;
             }
 
@@ -1447,25 +1474,25 @@ var showSearchResult = /*#__PURE__*/function () {
 
             return _context2.abrupt("return");
 
-          case 12:
-            // 3) Render Data
+          case 13:
+            //3) Render Data
             _resultView.default.render(data);
 
-            _context2.next = 18;
+            _context2.next = 19;
             break;
 
-          case 15:
-            _context2.prev = 15;
+          case 16:
+            _context2.prev = 16;
             _context2.t0 = _context2["catch"](1);
 
             _resultView.default.renderError();
 
-          case 18:
+          case 19:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[1, 15]]);
+    }, _callee2, null, [[1, 16]]);
   }));
 
   return function showSearchResult() {
@@ -1508,7 +1535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60932" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64183" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
