@@ -17,12 +17,26 @@ class WeatherView{
         render(data){
             this.#data=data;
             const markupMain=this.#generateMarkUp();
+            let month=["Jan","Feb","March","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
             this.#clear();
             this.#parentMain.insertAdjacentHTML("afterbegin",markupMain);
 
 
             for(let i=1;i<(this.#data.consolidated_weather.length-1);i++){
                 let dayData=this.#data.consolidated_weather[i];
+                let dayDate=(this.#data.consolidated_weather[i].applicable_date).slice(8,11);
+                let dayYear=(this.#data.consolidated_weather[i].applicable_date).slice(0,4);
+                let dayMonth=parseInt((this.#data.consolidated_weather[i].applicable_date).slice(6,7));
+                let fullDate=`${dayDate} ${month[dayMonth-1]} ${dayYear}`
+
+                console.log(fullDate)
+
+
+                this.#data.consolidated_weather[i].applicable_date=fullDate;
+
+                if(i==1){
+                    this.#data.consolidated_weather[i].applicable_date="TOMORROW";
+                }
                 const markupFoll=this.#generateMarkFoll(dayData);
                 this.#parentFoll.insertAdjacentHTML("beforeend",markupFoll);
             }

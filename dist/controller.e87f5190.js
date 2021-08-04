@@ -948,12 +948,27 @@ var WeatherView = /*#__PURE__*/function () {
 
       var markupMain = _classPrivateMethodGet(this, _generateMarkUp, _generateMarkUp2).call(this);
 
+      var month = ["Jan", "Feb", "March", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
       _classPrivateMethodGet(this, _clear, _clear2).call(this);
 
       _classPrivateFieldGet(this, _parentMain).insertAdjacentHTML("afterbegin", markupMain);
 
       for (var i = 1; i < _classPrivateFieldGet(this, _data).consolidated_weather.length - 1; i++) {
         var dayData = _classPrivateFieldGet(this, _data).consolidated_weather[i];
+
+        var dayDate = _classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date.slice(8, 11);
+
+        var dayYear = _classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date.slice(0, 4);
+
+        var dayMonth = parseInt(_classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date.slice(6, 7));
+        var fullDate = "".concat(dayDate, " ").concat(month[dayMonth - 1], " ").concat(dayYear);
+        console.log(fullDate);
+        _classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date = fullDate;
+
+        if (i == 1) {
+          _classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date = "TOMORROW";
+        }
 
         var markupFoll = _classPrivateMethodGet(this, _generateMarkFoll, _generateMarkFoll2).call(this, dayData);
 
@@ -1056,6 +1071,9 @@ var SearchView = /*#__PURE__*/function () {
   }, {
     key: "addHandlerSearch",
     value: function addHandlerSearch(handler) {
+      // this.#search.addEventListener("input",function(e){
+      //     handler();
+      // })
       _classPrivateFieldGet(this, _search).addEventListener("submit", function (e) {
         e.preventDefault();
         handler();
@@ -1535,7 +1553,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64183" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51878" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

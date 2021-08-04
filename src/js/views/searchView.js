@@ -9,6 +9,9 @@ class SearchView{
         return query;
     }
     addHandlerSearch(handler){
+        // this.#search.addEventListener("input",function(e){
+        //     handler();
+        // })
         this.#search.addEventListener("submit",function(e){
             e.preventDefault();
             handler()
