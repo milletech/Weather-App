@@ -29,7 +29,7 @@ class WeatherView{
                 let dayMonth=parseInt((this.#data.consolidated_weather[i].applicable_date).slice(6,7));
                 let fullDate=`${dayDate} ${month[dayMonth-1]} ${dayYear}`
 
-                console.log(fullDate)
+                // console.log(fullDate)
 
 
                 this.#data.consolidated_weather[i].applicable_date=fullDate;

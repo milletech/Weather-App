@@ -6,6 +6,7 @@ import resultView from "./views/resultView.js";
 import * as model from "./model.js";
 
 
+
 // model.getWeather("44418")
 
 
@@ -68,7 +69,25 @@ const showSearchResult=async function(query=searchView.getQuery()){
     }
 }
 
+// Geolocation Function
 
+
+const showLocationWeather=async function(){
+
+    try{
+        await model.searchLocation();
+        console.log(model.state.locationData)
+
+    }catch(err){
+        
+    }
+
+}
+
+// console.log(model.searchLocation())
+
+
+showLocationWeather();
 
 const init=function(){
     weatherView.addHandlerRender(showWeather);

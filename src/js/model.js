@@ -2,6 +2,12 @@
 // Get Weather of That City Based On it woeid
 import 'regenerator-runtime/runtime';
 
+
+
+export const state={
+    locationData:[]
+}
+
 export const getWeather= async function(id){
     try{
         let res=await fetch(`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/${id}/`);
@@ -48,6 +54,45 @@ export const searchCity=async function(query){
         return newData;
 
     }catch(err){
+        console.log(err)
+    }
+}
+
+// Search City Based On the User Geolocation
+
+ const getLocation=function(){
+     let cods;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(el=>{
+            cods=el.coords;
+            return cods;
+        });
+    } else { 
+        return  "Geolocation is not supported by this browser.";
+    }
+}
+
+
+
+
+export const searchLocation=async function(){
+    try{
+        let long;
+        let lat;
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(el=>{
+                long=el.coords.longitude;
+                lat=el.coords.latitude;
+                const api=`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/search/?lattlong=${lat},${long}`;
+                fetch(api).then(response=>{
+                    return response.json()
+                }).then(data=>{state.locationData=data});
+            })
+        }else{
+            console.log("Something wrong")
+        }
+    }
+    catch(err){
         console.log(err)
     }
 }

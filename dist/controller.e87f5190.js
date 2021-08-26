@@ -962,8 +962,8 @@ var WeatherView = /*#__PURE__*/function () {
         var dayYear = _classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date.slice(0, 4);
 
         var dayMonth = parseInt(_classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date.slice(6, 7));
-        var fullDate = "".concat(dayDate, " ").concat(month[dayMonth - 1], " ").concat(dayYear);
-        console.log(fullDate);
+        var fullDate = "".concat(dayDate, " ").concat(month[dayMonth - 1], " ").concat(dayYear); // console.log(fullDate)
+
         _classPrivateFieldGet(this, _data).consolidated_weather[i].applicable_date = fullDate;
 
         if (i == 1) {
@@ -1222,7 +1222,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.searchCity = exports.getWeather = void 0;
+exports.searchLocation = exports.searchCity = exports.getWeather = exports.state = void 0;
 
 require("regenerator-runtime/runtime");
 
@@ -1235,6 +1235,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var state = {
+  locationData: []
+};
+exports.state = state;
 
 var getWeather = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(id) {
@@ -1366,9 +1371,64 @@ var searchCity = /*#__PURE__*/function () {
   return function searchCity(_x2) {
     return _ref2.apply(this, arguments);
   };
-}();
+}(); // Search City Based On the User Geolocation
+
 
 exports.searchCity = searchCity;
+
+var getLocation = function getLocation() {
+  var cods;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (el) {
+      cods = el.coords;
+      return cods;
+    });
+  } else {
+    return "Geolocation is not supported by this browser.";
+  }
+};
+
+var searchLocation = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+    var long, lat;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            try {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (el) {
+                  long = el.coords.longitude;
+                  lat = el.coords.latitude;
+                  var api = "https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/search/?lattlong=".concat(lat, ",").concat(long);
+                  fetch(api).then(function (response) {
+                    return response.json();
+                  }).then(function (data) {
+                    state.locationData = data;
+                  });
+                });
+              } else {
+                console.log("Something wrong");
+              }
+            } catch (err) {
+              console.log(err);
+            }
+
+          case 1:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function searchLocation() {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.searchLocation = searchLocation;
 },{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js"}],"src/js/controller.js":[function(require,module,exports) {
 "use strict";
 
@@ -1516,7 +1576,43 @@ var showSearchResult = /*#__PURE__*/function () {
   return function showSearchResult() {
     return _ref2.apply(this, arguments);
   };
-}();
+}(); // Geolocation Function
+
+
+var showLocationWeather = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return model.searchLocation();
+
+          case 3:
+            console.log(model.state.locationData);
+            _context3.next = 8;
+            break;
+
+          case 6:
+            _context3.prev = 6;
+            _context3.t0 = _context3["catch"](0);
+
+          case 8:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 6]]);
+  }));
+
+  return function showLocationWeather() {
+    return _ref3.apply(this, arguments);
+  };
+}(); // console.log(model.searchLocation())
+
+
+showLocationWeather();
 
 var init = function init() {
   _weatherView.default.addHandlerRender(showWeather);
@@ -1553,7 +1649,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51878" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56819" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
